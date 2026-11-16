@@ -159,7 +159,7 @@ export default function PublicBusinessProfile(props: PublicBusinessProfileProps)
         {/* Brand header */}
         <div className="pp-brand-header">
           <span className="pp-brand-icon">T</span>
-          <span className="pp-brand-name">TapConnect</span>
+          <span className="pp-brand-name">Vistar</span>
         </div>
 
         {/* Logo (rounded warm box, 4 taps opens studio) */}
@@ -252,7 +252,7 @@ export default function PublicBusinessProfile(props: PublicBusinessProfileProps)
 
         {/* Clean footer */}
         <div className="pp-footer">
-          Powered by <strong>TapConnect</strong>
+          Powered by <strong>Vistar</strong>
         </div>
       </div>
 

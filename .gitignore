@@ -1,6 +1,8 @@
 node_modules/
 .next/
+.next-*/
 .env
 .env.*.local
 generated/
 coverage/
+/backend/

@@ -15,7 +15,9 @@ services:
       - key: SESSION_SECRET
         generateValue: true
       - key: APP_URL
-        value: https://tapconnect-rho.vercel.app
+        value: https://vistarai.vercel.app
+      - key: BACKEND_URL
+        sync: false
       - key: ADMIN_EMAIL
         sync: false
       - key: ADMIN_PASSWORD

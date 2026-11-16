@@ -94,7 +94,7 @@ export default function ActivatePage() {
     <main className="profile-page">
       <form className="profile-card" onSubmit={submit}>
         <div className="profile-brand">
-          <span className="brand-mark"><Command size={15} /></span>Tapconnect
+          <span className="brand-mark"><Command size={15} /></span>Vistar
         </div>
         <div className="profile-head" style={{ paddingBottom: 4 }}>
           <span className="profile-logo"><Nfc size={30} /></span>

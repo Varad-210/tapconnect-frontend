@@ -49,7 +49,7 @@ function ReviewCard({ card, brand, primary, secondary, text, template, eager = f
           <strong>SCAN QR CODE</strong>
         </div>
       </div>
-      <footer className="production-card-footer"><span>SN: {card.serial}</span><span>{cardBrand || "GetTappy"}</span></footer>
+      <footer className="production-card-footer"><span>SN: {card.serial}</span><span>{cardBrand || "Vistar"}</span></footer>
       </>}
     </article>
   );

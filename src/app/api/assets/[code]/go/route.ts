@@ -1,4 +1,0 @@
-import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import { safeReturnUrl } from "@/lib/http";
-export async function GET(_request: Request, { params }: { params: Promise<{ code: string }> }) { const { code } = await params; const asset = await db.asset.findUnique({ where: { publicCode: code }, select: { id: true, status: true, destinationUrl: true } }); if (!asset || asset.status !== "ACTIVE") return NextResponse.redirect(new URL(`/${code}`, process.env.APP_URL || "http://localhost:3000")); const destination = asset.destinationUrl && safeReturnUrl(asset.destinationUrl); if (!destination) return NextResponse.redirect(new URL(`/${code}`, process.env.APP_URL || "http://localhost:3000")); await db.scanEvent.create({ data: { assetId: asset.id, source: "redirect" } }); return NextResponse.redirect(destination); }

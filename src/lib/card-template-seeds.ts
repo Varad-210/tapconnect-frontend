@@ -5,7 +5,7 @@ export const FEEDBACK_SHEET_TEMPLATE = {
   primary: "#0E1013",
   secondary: "#D6B542",
   text: "#FFFFFF",
-  brand: "GetTappy",
+  brand: "Vistar",
   html: `<article class="review-card">
   <header class="review-top">
     <div class="brand-g">G</div>

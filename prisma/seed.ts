@@ -44,13 +44,13 @@ async function main() {
   const passwordHash = await bcrypt.hash(password, 12);
   await db.user.upsert({
     where: { email },
-    update: { name: "GetTappy Admin", passwordHash, role: "ADMIN", active: true },
-    create: { email, name: "GetTappy Admin", passwordHash, role: "ADMIN" },
+    update: { name: "Vistar Admin", passwordHash, role: "ADMIN", active: true },
+    create: { email, name: "Vistar Admin", passwordHash, role: "ADMIN" },
   });
 
   for (const item of templates) {
     const old = await db.designTemplate.findFirst({ where: { name: item.name } });
-    const preview = { primary: item.primary, secondary: item.secondary, text: item.text, brand: "GetTappy" };
+    const preview = { primary: item.primary, secondary: item.secondary, text: item.text, brand: "Vistar" };
     const source = { preview, html: item.html ?? null, react: null, css: item.css ?? null };
     if (old) {
       await db.designTemplate.update({ where: { id: old.id }, data: { category: item.category, description: item.description ?? `${item.category.toLowerCase()} card design`, preview, html: item.html ?? null, react: null, css: item.css ?? null, published: true } });
@@ -66,3 +66,4 @@ async function main() {
 }
 
 main().finally(() => db.$disconnect());
+

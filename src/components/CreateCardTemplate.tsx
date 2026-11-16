@@ -89,7 +89,7 @@ export default function CreateCardTemplate({ primary, secondary, text, brand, on
           name,
           category,
           description: `${category.toLowerCase()} custom card design`,
-          preview: { primary, secondary, text, brand: brand || "Tapconnect" },
+          preview: { primary, secondary, text, brand: brand || "Vistar" },
           html: mode === "HTML" ? htmlSource : undefined,
           react: mode === "REACT" ? reactSource : undefined,
           css,
@@ -123,7 +123,7 @@ export default function CreateCardTemplate({ primary, secondary, text, brand, on
             <div className="field"><label htmlFor="template-css">Card CSS</label><textarea id="template-css" className="template-css-input" value={css} onChange={event => setCss(event.target.value)} maxLength={20000} spellCheck={false} /></div>
             <p className="template-editor-help">Use <code>{"{{brand}}"}</code>, <code>{"{{serial}}"}</code>, <code>{"{{qrCode}}"}</code>, and <code>{"{{publicUrl}}"}</code> placeholders. HTML is previewed in an isolated frame. React source is saved with the template and isn’t executed by the app.</p>
           </div>
-          <aside className="template-editor-preview-wrap"><h3><Eye size={14} /> Live preview</h3>{mode === "HTML" ? <iframe className="template-editor-preview" title="HTML card template preview" sandbox="allow-same-origin" referrerPolicy="no-referrer" srcDoc={buildTemplatePreview(source, css, brand, primary, secondary, text)} /> : <div className="template-react-preview"><div className="bulk-preview-card" style={{ background: `linear-gradient(145deg,${primary},${secondary})`, color: text }}><span className="brand-mark">{brand || "Tapconnect"}</span><h3>Tap to connect</h3><span className="qr-placeholder">QR code added per card</span></div><p>React source saved with this template. It is kept as code and not run inside the dashboard.</p></div>}</aside>
+          <aside className="template-editor-preview-wrap"><h3><Eye size={14} /> Live preview</h3>{mode === "HTML" ? <iframe className="template-editor-preview" title="HTML card template preview" sandbox="allow-same-origin" referrerPolicy="no-referrer" srcDoc={buildTemplatePreview(source, css, brand, primary, secondary, text)} /> : <div className="template-react-preview"><div className="bulk-preview-card" style={{ background: `linear-gradient(145deg,${primary},${secondary})`, color: text }}><span className="brand-mark">{brand || "Vistar"}</span><h3>Tap to connect</h3><span className="qr-placeholder">QR code added per card</span></div><p>React source saved with this template. It is kept as code and not run inside the dashboard.</p></div>}</aside>
         </div>
         {error && <p className="bulk-errors">{error}</p>}
         <footer className="template-editor-actions"><button className="button outline" type="button" onClick={onClose}>Cancel</button><button className="button primary" type="submit" disabled={saving||name.trim().length<2}>{saving ? <LoaderCircle size={14} className="spin" /> : <Plus size={14} />}{saving ? "Saving…" : "Save template"}</button></footer>
