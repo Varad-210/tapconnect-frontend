@@ -6,7 +6,7 @@ Tapconnect is a Next.js storefront and QR/NFC management app with only two platf
 
 Requires Node.js 20.9+ and PostgreSQL 14+.
 
-1. Copy `.env.example` to `.env` and configure `DATABASE_URL`, `SESSION_SECRET` (32+ characters), `APP_URL`, `ADMIN_EMAIL`, and a strong `ADMIN_PASSWORD` (12+ characters).
+1. Copy `.env.example` to `.env` and configure `DATABASE_URL` (pooled runtime connection) and `DIRECT_URL` (direct migration connection), `SESSION_SECRET` (32+ characters), `APP_URL`, `ADMIN_EMAIL`, and a strong `ADMIN_PASSWORD` (12+ characters).
 2. Optionally set `NEXT_PUBLIC_NFC_SETUP_VIDEO_URL`, `NEXT_PUBLIC_QR_SETUP_VIDEO_URL`, and `NEXT_PUBLIC_WHATSAPP_NUMBER` for real support media/links.
 3. Run `npm install`, `npm run db:generate`, `npm run db:migrate`, and `npm run db:seed`.
 4. Start with `npm run dev`. The public store is `/`; dashboards are `/admin` and `/reseller`.

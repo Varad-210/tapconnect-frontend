@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: tapconnect
+    runtime: node
+    region: singapore
+    plan: free
+    branch: main
+    buildCommand: npm ci && npx prisma generate && npm run build
+    startCommand: npx prisma migrate deploy && npm run db:seed && npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DIRECT_URL
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: APP_URL
+        value: https://tapconnect-rho.vercel.app
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
