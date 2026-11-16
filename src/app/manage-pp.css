@@ -1,0 +1,724 @@
+/* ============================================================
+   MANAGE PAGE  (manage-* classes)
+   ============================================================ */
+
+/* Page shell */
+.manage-page {
+  min-height: 100vh;
+  background: #f0f4f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0 60px;
+}
+
+/* ── PIN unlock card ── */
+.manage-pin-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: min(380px, 100%);
+  margin: 80px auto 0;
+  padding: 36px 32px 32px;
+  background: #fff;
+  border: 1px solid #e3eaf4;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px #182b440d;
+}
+
+.manage-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 800 17px/1 Manrope, Arial, sans-serif;
+  color: #111;
+  letter-spacing: -.01em;
+}
+
+.manage-brand-mark {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font: 800 16px/1 Manrope, Arial, sans-serif;
+}
+
+.manage-pin-icon {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  background: #eff6ff;
+  color: #2563eb;
+  margin-top: 4px;
+}
+
+.manage-pin-title {
+  font: 750 20px/1.2 Manrope, Arial, sans-serif;
+  color: #111;
+  margin: 0;
+  text-align: center;
+}
+
+.manage-pin-sub {
+  margin: 0;
+  color: #6c7a8f;
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.manage-pin-input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid #d1d9e6;
+  border-radius: 11px;
+  font: 700 24px/1 Manrope, monospace;
+  letter-spacing: .3em;
+  text-align: center;
+  color: #111;
+  background: #f9fafc;
+  transition: border-color .15s;
+}
+.manage-pin-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #fff;
+}
+
+.manage-error {
+  color: #c0392b;
+  font-size: 12px;
+  margin: 0;
+  text-align: center;
+}
+
+.manage-saved {
+  color: #168047;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.manage-back-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #6c7a8f;
+  font-size: 12px;
+  text-decoration: none;
+  margin-top: 4px;
+}
+.manage-back-link:hover { color: #2563eb; }
+
+/* ── Main shell ── */
+.manage-shell {
+  width: min(1040px, 100%);
+  padding: 0 20px;
+}
+
+/* ── Top bar ── */
+.manage-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  gap: 12px;
+  border-bottom: 1px solid #e3eaf4;
+  margin-bottom: 24px;
+  background: transparent;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #f0f4f9;
+}
+
+.manage-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Buttons ── */
+.manage-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 20px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font: 700 14px/1 Manrope, Arial, sans-serif;
+  cursor: pointer;
+  transition: background .15s;
+  white-space: nowrap;
+}
+.manage-btn-primary:hover:not(:disabled) { background: #1d4ed8; }
+.manage-btn-primary:disabled { opacity: .55; cursor: not-allowed; }
+
+.manage-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  background: #fff;
+  color: #374151;
+  border: 1.5px solid #d1d9e6;
+  border-radius: 10px;
+  font: 700 13px/1 Manrope, Arial, sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color .15s, background .15s;
+  white-space: nowrap;
+}
+.manage-btn-outline:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
+
+.manage-btn-link {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font: 600 13px Manrope, Arial, sans-serif;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.manage-btn-add-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 16px;
+  background: #fff;
+  color: #374151;
+  border: 1.5px dashed #c8d4e8;
+  border-radius: 10px;
+  font: 650 13px Manrope, Arial, sans-serif;
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+  margin-top: 10px;
+}
+.manage-btn-add-link:hover { border-color: #2563eb; color: #2563eb; }
+
+/* ── Layout (sidebar + panel) ── */
+.manage-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── Sidebar ── */
+.manage-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: #fff;
+  border: 1px solid #e3eaf4;
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 1px 4px #182b440a;
+  position: sticky;
+  top: 80px;
+}
+
+.manage-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 14px;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  font: 600 13.5px/1.2 Manrope, Arial, sans-serif;
+  color: #374151;
+  cursor: pointer;
+  text-align: left;
+  transition: background .12s, color .12s;
+}
+.manage-tab-btn:hover { background: #f3f7fe; }
+.manage-tab-btn.active {
+  background: #eff6ff;
+  color: #2563eb;
+  font-weight: 750;
+  border-left: 3px solid #2563eb;
+  padding-left: 11px;
+}
+.manage-tab-btn span { flex: 1; }
+
+.manage-tab-chevron {
+  color: #9ba8bb;
+  flex: 0 0 auto;
+}
+.manage-tab-btn.active .manage-tab-chevron { color: #2563eb; }
+
+/* ── Panel ── */
+.manage-panel {
+  background: #fff;
+  border: 1px solid #e3eaf4;
+  border-radius: 16px;
+  padding: 28px 28px 24px;
+  box-shadow: 0 1px 4px #182b440a;
+}
+
+/* ── Section head ── */
+.manage-section-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.manage-section-icon {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.manage-section-head > div h2 {
+  margin: 0 0 4px;
+  font: 750 17px/1.2 Manrope, Arial, sans-serif;
+  color: #111;
+}
+.manage-section-head > div p {
+  margin: 0;
+  color: #6c7a8f;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+/* ── Fields ── */
+.manage-field {
+  margin-bottom: 20px;
+}
+.manage-field label {
+  display: block;
+  margin-bottom: 7px;
+  font: 650 13px/1 Manrope, Arial, sans-serif;
+  color: #374151;
+}
+.manage-field input,
+.manage-field textarea,
+.manage-field select {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1.5px solid #d1d9e6;
+  border-radius: 10px;
+  font: 500 14px/1.5 Manrope, Arial, sans-serif;
+  color: #111;
+  background: #f9fafc;
+  transition: border-color .15s;
+  box-sizing: border-box;
+}
+.manage-field input:focus,
+.manage-field textarea:focus,
+.manage-field select:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #fff;
+}
+
+.manage-required {
+  color: #e02d2d;
+}
+
+.manage-hint {
+  font-weight: 500;
+  color: #8793a4;
+  font-size: 11px;
+}
+
+/* ── Links list ── */
+.manage-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.manage-link-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.manage-link-num {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  font: 750 12px Manrope, Arial, sans-serif;
+  margin-top: 10px;
+}
+
+.manage-link-fields {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.manage-link-fields input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid #d1d9e6;
+  border-radius: 9px;
+  font: 500 13px Manrope, Arial, sans-serif;
+  background: #f9fafc;
+  box-sizing: border-box;
+}
+.manage-link-fields input:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #fff;
+}
+
+.manage-link-delete {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-top: 7px;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: #9ba8bb;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: background .12s, color .12s;
+}
+.manage-link-delete:hover { background: #fef2f2; color: #ef4444; }
+
+/* ── Info box ── */
+.manage-info-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px 15px;
+  background: #eff6ff;
+  border: 1px solid #bcd0f5;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #2563eb;
+  line-height: 1.5;
+  margin-top: 16px;
+}
+.manage-info-box > svg { flex: 0 0 auto; margin-top: 2px; }
+
+/* ── Security ── */
+.manage-security-note {
+  font-size: 12px;
+  color: #8793a4;
+  line-height: 1.6;
+  margin: 10px 0 0;
+}
+
+.manage-pin-field {
+  letter-spacing: .2em;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* ── Panel actions ── */
+.manage-panel-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #edf2f7;
+}
+
+/* ── Manage page responsive ── */
+@media (max-width: 720px) {
+  .manage-page { padding: 0 0 40px; }
+  .manage-shell { padding: 0 14px; }
+  .manage-topbar { padding: 12px 0; }
+  .manage-layout { grid-template-columns: 1fr; }
+  .manage-sidebar {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 4px;
+    padding: 6px;
+    border-radius: 12px;
+    scrollbar-width: none;
+  }
+  .manage-sidebar::-webkit-scrollbar { display: none; }
+  .manage-tab-btn { flex-direction: column; gap: 4px; padding: 8px 10px; white-space: nowrap; font-size: 11px; }
+  .manage-tab-btn.active { border-left: none; border-bottom: 3px solid #2563eb; padding-left: 10px; }
+  .manage-tab-chevron { display: none; }
+  .manage-panel { padding: 20px 16px 18px; }
+  .manage-link-fields { grid-template-columns: 1fr; }
+  .manage-panel-actions { flex-direction: column; }
+  .manage-pin-card { margin-top: 40px; padding: 28px 20px 24px; }
+}
+
+
+/* ============================================================
+   PUBLIC PROFILE PAGE  (Matches Image 3)
+   ============================================================ */
+
+.pp-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  background: #f4f6f9;
+}
+
+.pp-card {
+  width: min(380px, 100%);
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 24px 22px 22px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Brand header at top of card */
+.pp-brand-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.pp-brand-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  background: #1e293b;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font: 800 11px/1 Manrope, sans-serif;
+}
+
+.pp-brand-name {
+  font: 750 13px Manrope, sans-serif;
+  color: #1e293b;
+  letter-spacing: -.01em;
+}
+
+/* Warm logo box with cup/icon */
+.pp-logo-btn {
+  display: grid;
+  place-items: center;
+  width: 82px;
+  height: 82px;
+  border-radius: 22px;
+  background: #fef3c7;
+  border: 1.5px solid #fde68a;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 12px;
+  touch-action: manipulation;
+  transition: transform .12s;
+}
+.pp-logo-btn:active { transform: scale(.96); }
+.pp-logo-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.pp-logo-fallback {
+  font-size: 38px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+
+/* Name */
+.pp-name {
+  margin: 0 0 3px;
+  font: 800 22px/1.2 Manrope, Arial, sans-serif;
+  color: #0f172a;
+  letter-spacing: -.025em;
+}
+
+/* Subtitle */
+.pp-subtitle {
+  margin: 0 0 10px;
+  color: #64748b;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+/* 5-Star Rating Pill (Yellow badge with stars and 4.9 (198 reviews)) */
+.pp-rating-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px;
+  background: #fef9c3;
+  border-radius: 9999px;
+  margin-bottom: 14px;
+}
+
+.pp-stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.pp-rating-text {
+  font: 700 12.5px/1 Manrope, sans-serif;
+  color: #854d0e;
+}
+
+/* Description / Bio */
+.pp-desc {
+  margin: 0 0 18px;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 310px;
+}
+
+/* Action buttons */
+.pp-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Clean pill buttons matching Image 3 */
+.pp-link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 48px;
+  border-radius: 9999px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  color: #1e293b;
+  font: 600 14px/1 Manrope, Arial, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .12s ease;
+  box-sizing: border-box;
+}
+.pp-link-btn:active { transform: scale(.98); }
+.pp-link-btn:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.pp-link-icon {
+  position: absolute;
+  left: 18px;
+  display: grid;
+  place-items: center;
+}
+
+.pp-google-badge,
+.pp-brand-logo-badge {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+
+.pp-link-label {
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Primary Button: Leave a 5-Star Review (Blue pill with white text & yellow star) */
+.pp-link-review,
+.pp-link-btn.pp-link-primary {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
+}
+.pp-link-review:hover,
+.pp-link-btn.pp-link-primary:hover {
+  background: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+}
+
+/* WhatsApp: Soft green pill */
+.pp-link-whatsapp {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46;
+  font-weight: 600;
+}
+.pp-link-whatsapp:hover {
+  background: #d1fae5;
+}
+
+/* Call, Website, Contact: White outline pills */
+.pp-link-phone:hover,
+.pp-link-website:hover,
+.pp-link-contact:hover,
+.pp-link-other:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+/* Footer */
+.pp-footer {
+  margin-top: 20px;
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 500;
+  letter-spacing: .01em;
+}
+.pp-footer strong {
+  color: #64748b;
+  font-weight: 700;
+}
+
+@media (max-width: 420px) {
+  .pp-page {
+    padding: 12px 10px;
+  }
+  .pp-card {
+    border-radius: 26px;
+    padding: 20px 16px 18px;
+  }
+}

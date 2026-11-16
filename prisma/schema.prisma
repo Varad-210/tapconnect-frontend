@@ -1,0 +1,288 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  RESELLER
+}
+
+enum AssetType {
+  QR
+  NFC
+}
+
+enum AssetStatus {
+  PENDING
+  ACTIVE
+  BLOCKED
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum GenerationStatus {
+  COMPLETED
+  FAILED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         Role     @default(RESELLER)
+  active       Boolean  @default(true)
+  bulkGenerationAllowed Boolean @default(false)
+  assets       Asset[]  @relation("AssignedAssets")
+  generations  GenerationBatch[]
+  movements    InventoryMovement[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([role, active])
+}
+
+model Business {
+  id          String            @id @default(cuid())
+  name        String
+  category    String?
+  description String?
+  logoUrl     String?
+  tagline     String?
+  keywords    String[]          @default([])
+  tone        String?
+  assets      Asset[]
+  links       DestinationLink[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+}
+
+model Asset {
+  id                 String      @id @default(cuid())
+  publicCode         String      @unique
+  type               AssetType
+  status             AssetStatus @default(PENDING)
+  serialNumber       String?     @unique
+  cardName           String?
+  activationHash     String?
+  pinHash            String?
+  pinFailedAttempts  Int         @default(0)
+  pinLockedUntil     DateTime?
+  destinationUrl     String?
+  assignedToId       String?
+  assignedTo         User?       @relation("AssignedAssets", fields: [assignedToId], references: [id], onDelete: SetNull)
+  businessId         String?
+  business           Business?   @relation(fields: [businessId], references: [id], onDelete: SetNull)
+  scans              ScanEvent[]
+  batches            GenerationBatchItem[]
+  movements          InventoryMovement[]
+  createdAt          DateTime    @default(now())
+  activatedAt        DateTime?
+  updatedAt          DateTime    @updatedAt
+
+  @@index([assignedToId, status])
+  @@index([businessId])
+}
+
+model DestinationLink {
+  id         String   @id @default(cuid())
+  businessId String
+  label      String
+  url        String
+  kind       String
+  sortOrder  Int      @default(0)
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@index([businessId, sortOrder])
+}
+
+model ScanEvent {
+  id        String   @id @default(cuid())
+  assetId   String
+  asset     Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  source    String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@index([assetId, createdAt])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String?
+  action     String
+  targetType String
+  targetId   String?
+  details    Json?
+  createdAt  DateTime @default(now())
+
+  @@index([actorId, createdAt])
+}
+
+model Product {
+  id          String           @id @default(cuid())
+  slug        String           @unique
+  name        String
+  category    String
+  description String
+  imageUrl    String?
+  published   Boolean          @default(false)
+  variants    ProductVariant[]
+  orderItems  OrderItem[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@index([published, category])
+}
+
+model ProductVariant {
+  id        String      @id @default(cuid())
+  productId String
+  product   Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  name      String
+  pricePaise Int
+  stock     Int         @default(0)
+  active    Boolean     @default(true)
+  orderItems OrderItem[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@index([productId, active])
+}
+
+model Order {
+  id             String        @id @default(cuid())
+  orderNumber    String        @unique
+  customerName   String
+  email          String
+  phone          String
+  address        String
+  city           String
+  region         String
+  postalCode     String
+  country        String        @default("India")
+  status         OrderStatus   @default(PENDING)
+  paymentStatus  PaymentStatus @default(PENDING)
+  paymentMethod  String        @default("COD")
+  totalPaise     Int
+  items          OrderItem[]
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([email, createdAt])
+  @@index([status, createdAt])
+}
+
+model OrderItem {
+  id             String         @id @default(cuid())
+  orderId        String
+  order          Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId      String
+  product        Product        @relation(fields: [productId], references: [id], onDelete: Restrict)
+  variantId      String
+  variant        ProductVariant @relation(fields: [variantId], references: [id], onDelete: Restrict)
+  productName    String
+  variantName    String
+  unitPricePaise Int
+  quantity       Int
+
+  @@index([orderId])
+}
+
+model GenerationBatch {
+  id          String           @id @default(cuid())
+  createdById String
+  createdBy   User             @relation(fields: [createdById], references: [id], onDelete: Restrict)
+  quantity    Int
+  prefix      String
+  status      GenerationStatus @default(COMPLETED)
+  template    String
+  design      Json?
+  items       GenerationBatchItem[]
+  createdAt   DateTime         @default(now())
+
+  @@index([createdById, createdAt])
+}
+
+model GenerationBatchItem {
+  id        String          @id @default(cuid())
+  batchId   String
+  batch     GenerationBatch @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  assetId   String
+  asset     Asset           @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  serial    String          @unique
+  createdAt DateTime        @default(now())
+
+  @@unique([batchId, assetId])
+}
+
+model InventoryMovement {
+  id        String   @id @default(cuid())
+  assetId   String
+  asset     Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  actorId   String?
+  actor     User?    @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  action    String
+  details   Json?
+  createdAt DateTime @default(now())
+
+  @@index([assetId, createdAt])
+}
+
+model DesignTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  category    String
+  description String?
+  preview     Json
+  html        String?
+  react       String?
+  css         String?
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  versions    DesignTemplateVersion[]
+
+  @@index([published, category])
+}
+
+model DesignTemplateVersion {
+  id         String        @id @default(cuid())
+  templateId String
+  template   DesignTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  version    Int
+  source     Json
+  createdAt  DateTime      @default(now())
+
+  @@unique([templateId, version])
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
