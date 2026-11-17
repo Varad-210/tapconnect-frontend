@@ -94,18 +94,43 @@ export function PublicHeader() {
 export function PublicFooter() {
   return (
     <footer className="site-footer">
-      <Link className="site-logo" href="/" aria-label="Vistar home">
-        <BrandLogo />
-      </Link>
-      <p>Expand your business, one tap at a time.</p>
-      <nav aria-label="Footer navigation">
-        <Link href="/how-it-works">How it works</Link>
-        <Link href="/nfc-setup">NFC setup</Link>
-        <Link href="/qr-setup">QR setup</Link>
-        <Link href="/cart">Shopping bag</Link>
-        <Link href="/admin">Platform sign in</Link>
-      </nav>
-      <small>© {new Date().getFullYear()} Vistar</small>
+      <div className="footer-main">
+        <Link className="site-logo" href="/" aria-label="Vistar home">
+          <BrandLogo />
+        </Link>
+        <p>Expand your business, one tap at a time.</p>
+      </div>
+      <div className="footer-groups">
+        <section className="footer-link-group" aria-labelledby="footer-explore">
+          <h2 id="footer-explore">Explore</h2>
+          <nav aria-label="Explore Vistar">
+            <Link href="/#products">Shop cards</Link>
+            <Link href="/how-it-works">How it works</Link>
+            <Link href="/nfc-setup">NFC setup</Link>
+            <Link href="/qr-setup">QR setup</Link>
+          </nav>
+        </section>
+        <section className="footer-link-group" aria-labelledby="footer-resources">
+          <h2 id="footer-resources">Resources</h2>
+          <nav aria-label="Vistar resources">
+            <Link href="/google-review-cards">Google review cards</Link>
+            <Link href="/instagram-cards">Instagram cards</Link>
+            <Link href="/#faqs">FAQs</Link>
+          </nav>
+        </section>
+        <section className="footer-link-group" aria-labelledby="footer-account">
+          <h2 id="footer-account">Account</h2>
+          <nav aria-label="Account links">
+            <Link href="/#contact">Contact us</Link>
+            <Link href="/cart">Shopping bag</Link>
+            <Link href="/admin">Platform sign in</Link>
+          </nav>
+        </section>
+      </div>
+      <div className="footer-bottom">
+        <small>© {new Date().getFullYear()} Vistar. All rights reserved.</small>
+        <span>Built to help your business grow.</span>
+      </div>
     </footer>
   );
 }

@@ -563,6 +563,10 @@ textarea::placeholder {
   font-weight: 700;
 }
 
+.home-site .trust-strip b {
+  color: var(--vistar-royal);
+}
+
 .trust-strip i {
   color: var(--vistar-yellow-text);
 }
@@ -756,6 +760,10 @@ textarea::placeholder {
   padding: clamp(56px, 7vw, 90px) clamp(20px, 5vw, 64px);
 }
 
+.public-site .contact-band {
+  background: var(--vistar-hero-gradient);
+}
+
 .contact-form {
   width: min(100%, 640px);
   gap: 12px;
@@ -779,6 +787,18 @@ textarea::placeholder {
   min-height: 112px;
 }
 
+.contact-band .contact-form button.button.primary {
+  border-color: var(--vistar-yellow);
+  background: var(--vistar-yellow);
+  color: var(--vistar-navy);
+}
+
+.contact-band .contact-form button.button.primary:hover:not(:disabled) {
+  border-color: var(--vistar-yellow-deep);
+  background: var(--vistar-yellow-deep);
+  color: var(--vistar-navy);
+}
+
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
   color: #657898;
@@ -797,38 +817,98 @@ textarea::placeholder {
 }
 
 .site-footer {
-  justify-content: space-between;
-  gap: 24px;
-  padding: 54px clamp(22px, 6vw, 96px) 32px;
+  display: grid;
+  grid-template-columns: minmax(220px, .75fr) minmax(0, 1.5fr);
+  gap: 36px clamp(24px, 5vw, 72px);
+  padding: 54px clamp(22px, 6vw, 96px) 28px;
   background: var(--vistar-navy);
   color: #fff;
 }
 
-.site-footer .site-logo .brand-logo {
-  width: 164px;
-  height: 48px;
+.public-site .site-footer {
+  background: var(--vistar-navy);
+  color: #fff;
 }
 
-.site-footer p,
-.site-footer small {
+.site-footer > .footer-main {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 14px;
+}
+
+.site-footer .site-logo {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  padding: 6px 10px;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.site-footer .site-logo .brand-logo {
+  width: 150px;
+  height: 42px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.site-footer .footer-main p {
+  max-width: 270px;
+  margin: 0;
   color: #dce6ff;
 }
 
-.site-footer nav,
-.site-footer > div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 22px;
+.site-footer > .footer-groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.footer-link-group h2 {
+  margin: 0 0 14px;
+  color: #c7d6fb;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.site-footer .footer-link-group nav {
+  display: grid;
+  justify-content: start;
+  gap: 10px;
+}
+
+.site-footer .footer-link-group a {
+  white-space: normal;
 }
 
 .site-footer a {
   color: #f4f7ff;
+  font-size: 13px;
   font-weight: 600;
   text-decoration: none;
 }
 
 .site-footer a:hover {
   color: var(--vistar-yellow);
+}
+
+.site-footer > .footer-bottom {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 1px solid rgb(255 255 255 / 18%);
+}
+
+.site-footer .footer-bottom small,
+.site-footer .footer-bottom span {
+  color: #dce6ff;
+  font-size: 12px;
 }
 
 /* Secondary marketing pages: how it works, setup guides and collections */
@@ -1154,7 +1234,21 @@ textarea::placeholder {
 }
 
 .sidebar .brand {
-  color: #fff;
+  width: max-content;
+  max-width: 100%;
+  min-height: 46px;
+  margin: 0 0 20px;
+  padding: 6px 10px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--vistar-navy);
+}
+
+.sidebar .brand .brand-logo {
+  width: 142px;
+  height: 34px;
+  object-fit: contain;
 }
 
 .sidebar .brand-mark {
@@ -1828,12 +1922,21 @@ textarea::placeholder {
   }
 
   .site-footer {
+    grid-template-columns: 1fr;
     justify-content: center;
     text-align: center;
   }
 
-  .site-footer nav,
-  .site-footer > div {
+  .site-footer > .footer-main {
+    justify-items: center;
+  }
+
+  .site-footer > .footer-groups {
+    width: 100%;
+    text-align: left;
+  }
+
+  .site-footer > .footer-bottom {
     justify-content: center;
   }
 }
@@ -1984,6 +2087,28 @@ textarea::placeholder {
   .site-footer {
     padding: 42px 18px 28px;
   }
+
+  .site-footer > .footer-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 16px;
+  }
+
+  .site-footer > .footer-bottom {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 680px) {
+  .sidebar .brand {
+    min-height: 40px;
+    margin: 0;
+    padding: 4px 8px;
+  }
+
+  .sidebar .brand .brand-logo {
+    width: 128px;
+    height: 30px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2004,5 +2129,9 @@ textarea::placeholder {
 @media (max-width: 380px) {
   .header-cta {
     display: none;
+  }
+
+  .site-footer > .footer-groups {
+    grid-template-columns: 1fr;
   }
 }
