@@ -2167,3 +2167,54 @@ textarea::placeholder {
     grid-template-columns: 1fr;
   }
 }
+
+
+.catalog-load-error .button { margin-top: 8px; }
+.track-order-main { min-height: 72vh; padding: clamp(38px, 7vw, 82px) 20px 78px; background: var(--vistar-light-gradient); color: var(--vistar-ink); }
+.track-order-wrap { width: min(780px, 100%); margin: 0 auto; }
+.track-order-intro { max-width: 590px; margin: 0 auto 25px; text-align: center; }
+.track-order-intro h1 { margin: 7px 0 10px; color: var(--vistar-ink); font: 800 clamp(32px, 5vw, 48px)/1.08 Manrope, Arial, sans-serif; letter-spacing: -.04em; }
+.track-order-intro > p { margin: 0; color: var(--vistar-muted); font-size: 14px; line-height: 1.65; }
+.track-order-card, .tracked-order-card { padding: clamp(20px, 4vw, 32px); border: 1px solid var(--vistar-border); border-radius: 20px; background: #fff; box-shadow: var(--vistar-shadow); }
+.track-order-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.track-order-form .field { margin: 0; }
+.track-order-form .field label { display: block; margin-bottom: 6px; color: var(--vistar-ink); font-size: 12px; font-weight: 750; }
+.track-order-form .field input { width: 100%; min-height: 48px; padding: 0 13px; border: 1px solid var(--vistar-border); border-radius: 11px; background: #fff; color: var(--vistar-ink); font: inherit; font-size: 13px; }
+.track-order-form .button, .track-order-form .inline-error { grid-column: 1 / -1; }
+.track-order-form .button { justify-self: start; min-width: 180px; }
+.tracked-order-card { margin-top: 22px; }
+.tracked-order-head { display: flex; align-items: center; gap: 13px; padding-bottom: 22px; border-bottom: 1px solid #e8edf6; }
+.tracked-order-icon { display: grid; place-items: center; width: 46px; height: 46px; flex: 0 0 46px; border-radius: 14px; background: #eaf1ff; color: var(--vistar-blue); }
+.tracked-order-head .eyebrow { color: var(--vistar-blue); font-size: 10px; }
+.tracked-order-head h2 { margin: 3px 0 0; color: var(--vistar-ink); font: 750 20px/1.25 Manrope, Arial, sans-serif; }
+.tracked-status-pill { margin-left: auto; padding: 7px 11px; border: 1px solid #dce9ff; border-radius: 999px; background: #f0f5ff; color: #1b55c7; font-size: 11px; font-weight: 750; white-space: nowrap; }
+.tracked-status-pill.cancelled { border-color: #f3d4d4; background: #fff4f4; color: #a33a3a; }
+.order-progress { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 26px 0; padding: 0; list-style: none; }
+.order-progress li { position: relative; display: grid; justify-items: center; gap: 8px; color: #8793a7; font-size: 10px; font-weight: 650; text-align: center; }
+.order-progress li::before { position: absolute; z-index: 0; top: 15px; left: calc(-50% + 15px); width: calc(100% - 22px); height: 2px; background: #e6ebf4; content: ""; }
+.order-progress li:first-child::before { display: none; }
+.progress-dot { z-index: 1; display: grid; place-items: center; width: 30px; height: 30px; border: 2px solid #dbe3f0; border-radius: 50%; background: #fff; color: #8996a9; font-size: 10px; }
+.order-progress li.complete { color: var(--vistar-navy); }
+.order-progress li.complete .progress-dot { border-color: var(--vistar-blue); background: var(--vistar-blue); color: #fff; }
+.order-progress li.complete::before { background: var(--vistar-blue); }
+.tracked-note { margin: 18px 0 0; color: #8f3434; line-height: 1.6; }
+.tracked-items { margin-top: 22px; padding-top: 18px; border-top: 1px solid #e8edf6; }
+.tracked-items h3 { margin: 0 0 12px; color: var(--vistar-ink); font: 750 14px Manrope, Arial, sans-serif; }
+.tracked-item, .tracked-total { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; color: #344462; font-size: 12px; }
+.tracked-item small { display: block; margin-top: 4px; color: #7b879a; font-size: 10px; }
+.tracked-item b, .tracked-total b { color: var(--vistar-navy); white-space: nowrap; }
+.tracked-total { margin-top: 6px; padding-top: 14px; border-top: 1px solid #e8edf6; font-weight: 750; }
+.tracked-date { margin: 9px 0 0; color: #78869a; font-size: 11px; }
+.track-order-help { margin: 20px 0 0; color: var(--vistar-muted); font-size: 12px; text-align: center; }
+.track-order-help a { color: var(--vistar-blue); font-weight: 750; }
+.order-email-notice { margin: 12px 0; padding: 11px 14px; border: 1px solid #d9e6ff; border-radius: 10px; background: #f3f7ff; color: #174ca8; font-size: 12px; font-weight: 700; }
+@media (max-width: 560px) {
+  .track-order-form { grid-template-columns: 1fr; }
+  .track-order-form .button, .track-order-form .inline-error { grid-column: 1; }
+  .tracked-order-head { align-items: flex-start; flex-wrap: wrap; }
+  .tracked-status-pill { margin-left: 58px; }
+  .order-progress { gap: 2px; }
+  .order-progress li { font-size: 8px; }
+  .order-progress li::before { left: calc(-50% + 14px); width: calc(100% - 18px); }
+  .order-progress .progress-dot { width: 27px; height: 27px; }
+}
