@@ -11,6 +11,7 @@ import {
   Star,
 } from "lucide-react";
 import GoogleLogo, { InstagramLogo, WhatsAppLogo } from "@/components/GoogleLogo";
+import BrandLogo from "@/components/BrandLogo";
 import ReviewAssistant from "@/components/ReviewAssistant";
 
 type ProfileLink = { label: string; url: string; kind: string };
@@ -158,8 +159,7 @@ export default function PublicBusinessProfile(props: PublicBusinessProfileProps)
       <div className="pp-card">
         {/* Brand header */}
         <div className="pp-brand-header">
-          <span className="pp-brand-icon">T</span>
-          <span className="pp-brand-name">Vistar</span>
+          <BrandLogo />
         </div>
 
         {/* Logo (rounded warm box, 4 taps opens studio) */}

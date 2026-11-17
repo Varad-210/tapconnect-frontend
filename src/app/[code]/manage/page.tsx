@@ -6,6 +6,7 @@ import {
   Link2, LockKeyhole, Plus, Save, Settings2, Sparkles, Star, Trash2,
 } from "lucide-react";
 import GoogleLogo from "@/components/GoogleLogo";
+import BrandLogo from "@/components/BrandLogo";
 
 type Profile = {
   name: string; category: string; tagline: string; description: string;
@@ -196,7 +197,7 @@ export default function ManagePage() {
   if (!unlocked) return (
     <main className="manage-page">
       <form className="manage-pin-card" onSubmit={unlock}>
-        <div className="manage-brand"><span className="manage-brand-mark">T</span>Vistar</div>
+        <div className="manage-brand"><BrandLogo /></div>
         <div className="manage-pin-icon"><LockKeyhole size={30} /></div>
         <h1 className="manage-pin-title">Enter your security PIN</h1>
         <p className="manage-pin-sub">Unlock Smart Card Studio to edit your business profile.</p>
@@ -223,7 +224,7 @@ export default function ManagePage() {
       <form className="manage-shell" onSubmit={save}>
         {/* Top bar */}
         <div className="manage-topbar">
-          <div className="manage-brand"><span className="manage-brand-mark">T</span>Vistar</div>
+          <div className="manage-brand"><BrandLogo /></div>
           <div className="manage-topbar-actions">
             <a className="manage-btn-outline" href={`/${code}`} target="_blank" rel="noreferrer">
               <Eye size={14} />Preview Profile

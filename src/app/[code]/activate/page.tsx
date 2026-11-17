@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, Command, Nfc, Sparkles } from "lucide-react";
+import { ArrowLeft, Nfc, Sparkles } from "lucide-react";
+import BrandLogo from "@/components/BrandLogo";
 
 const PRESET_CATEGORIES = [
   { emoji: "☕", label: "Cafe & Bakery" },
@@ -93,9 +94,7 @@ export default function ActivatePage() {
   return (
     <main className="profile-page">
       <form className="profile-card" onSubmit={submit}>
-        <div className="profile-brand">
-          <span className="brand-mark"><Command size={15} /></span>Vistar
-        </div>
+        <div className="profile-brand"><BrandLogo /></div>
         <div className="profile-head" style={{ paddingBottom: 4 }}>
           <span className="profile-logo"><Nfc size={30} /></span>
           <h1>Activate your card</h1>

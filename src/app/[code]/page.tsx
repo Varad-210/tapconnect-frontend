@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { ArrowUpRight, Command, Nfc, QrCode, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Nfc, QrCode, ShieldCheck } from "lucide-react";
 import PublicBusinessProfile from "@/components/PublicBusinessProfile";
+import BrandLogo from "@/components/BrandLogo";
 
 type PublicProfile = {
   name: string;
@@ -43,7 +44,7 @@ export default function PublicProfilePage() {
     <main className="public-profile-page">
       <section className="business-profile-card business-profile-pending-card">
         <div className="business-profile-accent" />
-        <div className="business-profile-pending-brand"><span className="brand-mark"><Command size={15} /></span>Vistar</div>
+        <div className="business-profile-pending-brand"><BrandLogo /></div>
         <div className="profile-head">
           <span className="profile-logo"><QrCode size={29} /></span>
           <h1>Set up your business profile</h1>

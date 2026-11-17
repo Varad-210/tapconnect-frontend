@@ -1,13 +1,14 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { Activity, ArrowDownToLine, ArrowUpRight, Bell, BriefcaseBusiness, Building2, CircleHelp, Command, ContactRound, LayoutDashboard, LogOut, Nfc, Plus, QrCode, Search, Settings, ShieldCheck, Users, X, Layers, Package, ClipboardList, MessageSquare, Warehouse } from "lucide-react";
+import { Activity, ArrowDownToLine, ArrowUpRight, Bell, BriefcaseBusiness, Building2, CircleHelp, ContactRound, LayoutDashboard, LogOut, Nfc, Plus, QrCode, Search, Settings, ShieldCheck, Users, X, Layers, Package, ClipboardList, MessageSquare, Warehouse } from "lucide-react";
+import BrandLogo from "./BrandLogo";
 type User = { id: string; name: string; email: string; role: "ADMIN" | "RESELLER" };
 type Asset = { id: string; publicCode: string; type: "QR" | "NFC"; status: "PENDING" | "ACTIVE" | "BLOCKED"; serialNumber?: string | null; business?: { name: string } | null; assignedTo?: { name: string } | null; _count: { scans: number } };
 type Summary = { role: string; assets: { status: string; type: string; _count: { _all: number } }[]; businesses: number; scans: number; resellers?: number };
 const navAdmin = [["Overview", LayoutDashboard], ["Resellers", Users], ["QR codes", QrCode], ["NFC cards", Nfc], ["Bulk NFC Generate", Layers], ["Businesses", Building2], ["Inventory", Warehouse], ["Store products", Package], ["Orders", ClipboardList], ["Messages", MessageSquare], ["Analytics", Activity], ["Settings", Settings]] as const;
 const navReseller = [["Overview", LayoutDashboard], ["QR codes", QrCode], ["NFC cards", Nfc], ["Bulk NFC Generate", Layers], ["Businesses", Building2], ["Inventory", Warehouse], ["Analytics", Activity], ["Settings", Settings]] as const;
 async function api(path: string, body?: unknown, method = "GET") { const res = await fetch(path, { method, headers: body ? { "Content-Type": "application/json" } : undefined, body: body ? JSON.stringify(body) : undefined }); const data = await res.json().catch(() => ({})); if (!res.ok) throw new Error(data.error || "Something went wrong."); return data; }
-function Brand() { return <div className="brand"><span className="brand-mark"><Command size={18} /></span>Vistar</div> }
+function Brand() { return <div className="brand"><BrandLogo /></div> }
 export default function Home() {
     const [user, setUser] = useState<User | null>(null), [checking, setChecking] = useState(true), [tab, setTab] = useState("Overview"), [assets, setAssets] = useState<Asset[]>([]), [resellers, setResellers] = useState<{ id: string; name: string; email: string; active: boolean; bulkGenerationAllowed: boolean; _count: { assets: number } }[]>([]), [summary, setSummary] = useState<Summary | null>(null), [modal, setModal] = useState<"asset" | "reseller" | null>(null), [activation, setActivation] = useState<{ code: string; key: string } | null>(null), [search, setSearch] = useState(""), [toast, setToast] = useState(""), [busy, setBusy] = useState(false);
     const [email, setEmail] = useState(""), [password, setPassword] = useState(""), [assetType, setAssetType] = useState("QR"), [serial, setSerial] = useState(""), [assignTo, setAssignTo] = useState(""), [newName, setNewName] = useState(""), [newEmail, setNewEmail] = useState(""), [newPassword, setNewPassword] = useState("");

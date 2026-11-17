@@ -126,3 +126,17 @@
  .home-site .hero::before{width:52%;height:12%}
  .home-site .hero::after{width:60%;height:11%}
 }
+
+/* Vistar brand logo lockup */
+.brand-logo{display:block;width:auto;flex:none}
+.site-logo .brand-logo{height:36px}
+.site-footer .site-logo .brand-logo{height:28px}
+.brand .brand-logo{height:30px}
+.profile-brand .brand-logo{height:28px}
+.manage-brand .brand-logo{height:30px}
+.business-profile-pending-brand .brand-logo{height:26px}
+.pp-brand-header .brand-logo{height:22px}
+.home-site .site-logo{background:#fff;border-radius:16px;padding:8px 14px}
+.home-site .site-logo .brand-logo{height:48px}
+@media(max-width:1200px){.home-site .site-logo .brand-logo{height:40px}}
+@media(max-width:760px){.home-site .site-logo{padding:6px 10px;border-radius:12px}.home-site .site-logo .brand-logo{height:32px}}
