@@ -48,7 +48,7 @@ export function PublicHeader() {
         <span>NO SUBSCRIPTION</span><i aria-hidden="true">•</i>
         <span>VISTAR · EXPAND YOUR BUSINESS</span>
       </div>
-      <header className="site-header">
+      <header className="site-header standard-site-header">
         <Link className="site-logo" href="/" aria-label="Vistar home">
           <BrandLogo />
         </Link>

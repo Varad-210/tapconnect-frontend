@@ -224,6 +224,23 @@ textarea::placeholder {
   object-position: left center;
 }
 
+.standard-site-header .site-logo {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid #e7edfa;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--vistar-navy);
+}
+
+.standard-site-header .site-logo .brand-logo {
+  width: 142px;
+  height: 38px;
+  object-fit: contain;
+  object-position: center;
+}
+
 .site-nav {
   display: flex;
   align-items: center;
@@ -947,6 +964,11 @@ textarea::placeholder {
   letter-spacing: -.045em;
 }
 
+.public-site .page-hero h1,
+.public-site .collection-hero h1 {
+  color: #fff;
+}
+
 .page-hero p,
 .collection-hero p {
   max-width: 680px;
@@ -962,6 +984,11 @@ textarea::placeholder {
 
 .page-hero em,
 .collection-hero em {
+  color: var(--vistar-yellow);
+}
+
+.public-site .page-hero h1 em,
+.public-site .collection-hero h1 em {
   color: var(--vistar-yellow);
 }
 
@@ -1959,6 +1986,11 @@ textarea::placeholder {
   .site-logo .brand-logo {
     width: 130px;
     height: 44px;
+  }
+
+  .standard-site-header .site-logo .brand-logo {
+    width: 118px;
+    height: 34px;
   }
 
   .header-cta {
