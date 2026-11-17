@@ -122,6 +122,7 @@ export function PublicFooter() {
           <h2 id="footer-account">Account</h2>
           <nav aria-label="Account links">
             <Link href="/#contact">Contact us</Link>
+            <Link href="/track-order">Track an order</Link>
             <Link href="/cart">Shopping bag</Link>
             <Link href="/admin">Platform sign in</Link>
           </nav>
@@ -134,3 +135,4 @@ export function PublicFooter() {
     </footer>
   );
 }
+
